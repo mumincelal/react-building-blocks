@@ -1,0 +1,32 @@
+{
+  "name": "react-building-blocks",
+  "version": "1.0.0",
+  "description": "A collection of simple, reusable, and effective React components.",
+  "homepage": "https://github.com/mumincelal/react-building-blocks#readme",
+  "license": "MIT",
+  "author": "mumincelal",
+  "bugs": {
+    "url": "https://github.com/mumincelal/react-building-blocks/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mumincelal/react-building-blocks.git"
+  },
+  "scripts": {
+    "lint": "biome lint --write",
+    "format": "biome format --write",
+    "check": "biome check --write",
+    "prepare": "git config core.hooksPath .hooks && chmod +x .hooks/*"
+  },
+  "dependencies": {
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@types/react": "^19.1.6",
+    "lint-staged": "^16.1.0",
+    "typescript": "^5.8.3"
+  }
+}
