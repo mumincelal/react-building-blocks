@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* Base Options */
+    "jsx": "react",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "allowJs": true,
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "checkJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "incremental": true
+  },
+  "include": ["**/*.tsx"],
+  "exclude": ["node_modules"]
+}
