@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.2.5/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -7,7 +7,7 @@
     "defaultBranch": "main"
   },
   "files": {
-    "ignore": ["*.css"]
+    "includes": ["**", "!**/*.css"]
   },
   "formatter": {
     "enabled": true,
@@ -18,18 +18,29 @@
     "attributePosition": "auto",
     "formatWithErrors": false,
     "useEditorconfig": true,
-    "ignore": ["node_modules", ".next", "dist", "build", ".dockerignore"]
+    "includes": [
+      "**",
+      "!**/node_modules",
+      "!**/.next",
+      "!**/dist",
+      "!**/build",
+      "!**/.dockerignore"
+    ]
   },
   "linter": {
     "enabled": true,
     "rules": {
       "a11y": {
-        "recommended": true
+        "recommended": true,
+        "noStaticElementInteractions": "error",
+        "useAriaPropsSupportedByRole": "error",
+        "useValidAutocomplete": "error"
       },
       "complexity": {
-        "all": true,
         "useArrowFunction": "error",
-        "noUselessFragments": "error"
+        "noUselessFragments": "error",
+        "noUselessEscapeInRegex": "error",
+        "noUselessStringRaw": "error"
       },
       "correctness": {
         "recommended": true,
@@ -37,64 +48,15 @@
         "noUnusedImports": "error",
         "noUnusedPrivateClassMembers": "error",
         "noUnusedVariables": "error",
-        "useArrayLiterals": "error",
         "useHookAtTopLevel": "error",
-        "useExhaustiveDependencies": "warn"
-      },
-      "nursery": {
-        "noCommonJs": "error",
-        "noDescendingSpecificity": "error",
-        "noDocumentCookie": "error",
-        "noDocumentImportInPage": "error",
-        "noDuplicateCustomProperties": "error",
-        "noDuplicateElseIf": "error",
-        "noDuplicateProperties": "error",
-        "noDuplicatedFields": "error",
-        "noDynamicNamespaceImportAccess": "error",
-        "noEnum": "error",
-        "noExportedImports": "error",
-        "noHeadElement": "error",
-        "noHeadImportInDocument": "error",
-        "noImgElement": "error",
-        "noIrregularWhitespace": "error",
+        "useExhaustiveDependencies": "warn",
         "noMissingVarFunction": "error",
-        "noNestedTernary": "error",
-        "noOctalEscape": "error",
-        "noProcessEnv": "error",
-        "noSecrets": "error",
-        "noStaticElementInteractions": "error",
-        "noSubstr": "error",
-        "noTemplateCurlyInString": "error",
         "noUnknownPseudoClass": "error",
         "noUnknownPseudoElement": "error",
-        "noUnknownTypeSelector": "error",
-        "noUselessEscapeInRegex": "error",
-        "noUselessStringRaw": "error",
-        "noValueAtRule": "error",
-        "useAdjacentOverloadSignatures": "error",
-        "useAriaPropsSupportedByRole": "error",
-        "useAtIndex": "error",
-        "useCollapsedIf": "error",
-        "useComponentExportOnlyModules": {
-          "level": "error",
-          "options": {
-            "allowExportNames": ["metadata"]
-          }
-        },
-        "useConsistentCurlyBraces": "error",
-        "useDeprecatedReason": "error",
-        "useGoogleFontDisplay": "error",
-        "useGuardForIn": "error",
-        "useImportRestrictions": "error",
-        "useStrictMode": "error",
-        "useTrimStartEnd": "error",
-        "useValidAutocomplete": "error",
-        "useConsistentMemberAccessibility": {
-          "level": "error",
-          "options": {
-            "accessibility": "explicit"
-          }
-        },
+        "noUnknownTypeSelector": "error"
+      },
+      "nursery": {
+        "noSecrets": "error",
         "useSortedClasses": {
           "level": "error",
           "options": {
@@ -107,7 +69,10 @@
         "recommended": true,
         "noBarrelFile": "error",
         "noReExportAll": "error",
-        "useTopLevelRegex": "error"
+        "useTopLevelRegex": "error",
+        "noDynamicNamespaceImportAccess": "error",
+        "noImgElement": "error",
+        "noNamespaceImport": "error"
       },
       "security": {
         "recommended": true
@@ -117,7 +82,6 @@
         "noDefaultExport": "error",
         "noDoneCallback": "error",
         "noNamespace": "error",
-        "noNamespaceImport": "error",
         "noParameterProperties": "error",
         "noRestrictedGlobals": "error",
         "noShoutyConstants": "error",
@@ -149,6 +113,33 @@
             "requireAscii": true,
             "filenameCases": ["kebab-case"]
           }
+        },
+        "useArrayLiterals": "error",
+        "noCommonJs": "error",
+        "noDescendingSpecificity": "error",
+        "noEnum": "error",
+        "noExportedImports": "error",
+        "noHeadElement": "error",
+        "noNestedTernary": "error",
+        "noProcessEnv": "error",
+        "noSubstr": "error",
+        "noValueAtRule": "error",
+        "useAtIndex": "error",
+        "useCollapsedIf": "error",
+        "useComponentExportOnlyModules": {
+          "level": "error",
+          "options": {
+            "allowExportNames": ["metadata"]
+          }
+        },
+        "useConsistentCurlyBraces": "error",
+        "useDeprecatedReason": "error",
+        "useTrimStartEnd": "error",
+        "useConsistentMemberAccessibility": {
+          "level": "error",
+          "options": {
+            "accessibility": "explicit"
+          }
         }
       },
       "suspicious": {
@@ -162,13 +153,29 @@
         "noSkippedTests": "error",
         "noSparseArray": "error",
         "useErrorMessage": "error",
-        "useNumberToFixedDigitsArgument": "error"
+        "useNumberToFixedDigitsArgument": "error",
+        "noDocumentCookie": "error",
+        "noDocumentImportInPage": "error",
+        "noDuplicateCustomProperties": "error",
+        "noDuplicateElseIf": "error",
+        "noDuplicateProperties": "error",
+        "noHeadImportInDocument": "error",
+        "noIrregularWhitespace": "error",
+        "noOctalEscape": "error",
+        "noTemplateCurlyInString": "error",
+        "useAdjacentOverloadSignatures": "error",
+        "useGoogleFontDisplay": "error",
+        "useGuardForIn": "error",
+        "useStrictMode": "error"
       }
     }
   },
-  "organizeImports": {
-    "enabled": true,
-    "ignore": ["node_modules", ".next", "dist", "public", "build"]
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
   "javascript": {
     "formatter": {
@@ -197,25 +204,26 @@
   },
   "overrides": [
     {
-      "include": ["*.js?(x)", "*.ts?(x)"]
+      "includes": []
     },
     {
-      "include": ["commitlint.config.js"],
+      "includes": ["**/commitlint.config.js"],
       "linter": {
         "rules": {
-          "nursery": {
+          "nursery": {},
+          "style": {
             "noCommonJs": "off"
           }
         }
       }
     },
     {
-      "include": [
-        "app/**/page.tsx",
-        "app/**/not-found.tsx",
-        "app/**/layout.tsx",
-        "next.config.ts",
-        "postcss.config.mjs"
+      "includes": [
+        "**/app/**/page.tsx",
+        "**/app/**/not-found.tsx",
+        "**/app/**/layout.tsx",
+        "**/next.config.ts",
+        "**/postcss.config.mjs"
       ],
       "linter": {
         "rules": {
@@ -226,7 +234,7 @@
       }
     },
     {
-      "include": ["constants.ts"],
+      "includes": ["**/constants.ts"],
       "linter": {
         "rules": {
           "style": {

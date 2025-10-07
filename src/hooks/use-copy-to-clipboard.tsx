@@ -10,18 +10,13 @@ export const useCopyToClipboard = ({
   onCopy
 }: CopyToClipboardOptions) => {
   const [isCopied, setIsCopied] = React.useState(false);
+  const [error, setError] = React.useState<Error | null>(null);
 
-  const copyToClipboard = (text: string) => {
-    if (typeof window === "undefined" || !navigator.clipboard.writeText) {
-      return;
-    }
-
-    if (!text) {
-      return;
-    }
-
-    navigator.clipboard.writeText(text).then(() => {
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
       setIsCopied(true);
+      setError(null);
 
       if (onCopy) {
         onCopy();
@@ -32,8 +27,12 @@ export const useCopyToClipboard = ({
           setIsCopied(false);
         }, timeout);
       }
-    }, console.error);
+    } catch (error) {
+      setError(
+        error instanceof Error ? error : new Error("Failed to copy text")
+      );
+    }
   };
 
-  return { isCopied, copyToClipboard } as const;
+  return { isCopied, error, copyToClipboard } as const;
 };
