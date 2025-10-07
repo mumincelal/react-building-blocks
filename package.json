@@ -19,14 +19,15 @@
     "prepare": "git config core.hooksPath .hooks && chmod +x .hooks/*"
   },
   "dependencies": {
-    "react": "^19.1.0"
+    "react": "^19.2.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@types/react": "^19.1.6",
-    "lint-staged": "^16.1.0",
-    "typescript": "^5.8.3"
+    "@biomejs/biome": "^2.2.5",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@types/node": "^24.7.0",
+    "@types/react": "^19.2.2",
+    "lint-staged": "^16.2.3",
+    "typescript": "^5.9.3"
   }
 }
